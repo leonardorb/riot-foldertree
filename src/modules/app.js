@@ -11,6 +11,7 @@ requirejs(['riot', 'lodash', 'data/folders', 'utils/foldertree', 'modules/folder
 
   var folderTreeUtils = new folderTreeUtils(folders);
 
-  riot.mount('foldertree', { folders: folders });
+  //console.log(folderTreeUtils.getFolderTree());
+  riot.mount('foldertreee', { folders: folderTreeUtils.getFolderTree() });
 
 });

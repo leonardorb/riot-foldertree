@@ -1,7 +1,12 @@
-<ul>
-  <li each={folders}>
-    {name}
-  </li>
-</ul>
-
-this.folders = opts.folders;
+<foldertree>
+  <ul>
+    <li each={folders}>
+      {name}
+      <ul if={this.parent.isFolder(this)}>
+        <li each={nodes}>
+          {name}
+        </li>
+      </ul>
+    </li>
+  </ul>
+</foldertree>
