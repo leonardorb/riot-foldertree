@@ -1,15 +1,14 @@
-define([
-  'riot',
-  'text!components/foldertree.html',
-], function (riot, tpl) {
+define([], function () {
   'use strict';
 
-  riot.tag('foldertreee', tpl, function (opts) {
-    this.folders = opts.folders;
+  var folderTree = function (options) {
+    options.folders? this.folders = options.folders : this.folders = [];
+  };
 
-    this.isFolder = function(node) {
-      return node.nodes && node.nodes.length > 0;
-    }
-  });
+  folderTree.prototype.build = function () {
+    riot.mount('foldertree', { folders: this.folders });
+  };
+
+  return folderTree;
 
 });

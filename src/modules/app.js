@@ -7,11 +7,17 @@ requirejs.config({
   }
 });
 
-requirejs(['riot', 'lodash', 'data/folders', 'utils/foldertree', 'modules/foldertree'], function (riot, _, folders, folderTreeUtils) {
+requirejs([
+  'lodash',
+  'data/folders',
+  'utils/foldertree_builder',
+  'modules/foldertree'
+], function (_, folders, folderTreeUtils, folderTreeModule) {
+  'use strict';
 
   var folderTreeUtils = new folderTreeUtils(folders);
 
-  //console.log(folderTreeUtils.getFolderTree());
-  riot.mount('foldertreee', { folders: folderTreeUtils.getFolderTree() });
+  var folderTree = new folderTreeModule({ folders: folderTreeUtils.getFolderTree() });
+  folderTree.build();
 
 });

@@ -1,12 +1,32 @@
 <foldertree>
   <ul>
-    <li each={folders}>
-      {name}
-      <ul if={this.parent.isFolder(this)}>
-        <li each={nodes}>
-          {name}
-        </li>
-      </ul>
+    <li each={ folders }>
+      <treeitem data={ this }></treeitem>
     </li>
   </ul>
+
+  <script>
+    var _this = this;
+    _this.folders = opts.folders;
+  </script>
+
 </foldertree>
+
+<treeitem>
+  {name}
+  <ul if={ isFolder() }>
+    <li each={ child, i in nodes}>
+      <treeitem data={ child }></treeitem>
+    </li>
+  </ul>
+
+  <script>
+    var _this = this;
+    _this.name = opts.data.name,
+    _this.nodes = opts.data.nodes;
+
+    isFolder () {
+      return _this.nodes && _this.nodes.length > 0;
+    }
+  </script>
+</treeitem>
